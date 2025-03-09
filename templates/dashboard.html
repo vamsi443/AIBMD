@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Based Malware Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #1e90ff, #8a2be2);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+            padding-top: 30px;
+        }
+        
+        h1 {
+            color: white;
+            font-size: 58px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p {
+            text-align: left;
+            padding: 15px;
+            font-size: 30px;
+            color: white;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            color: white;
+            transition: 0.3s;
+        }
+        .card:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .graphs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        .graph-box {
+            flex: 1 1 45%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            color: white;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .graph-box:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .bar-chart {
+            width: 90%;
+            height: 20px;
+            margin: 10px auto;
+            border-radius: 10px;
+        }
+
+        .blue { 
+            background: blue;
+        }
+
+        .yellow { 
+            background: yellow;
+        }
+
+        .button-container {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+
+        .action-button {
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: 600;
+            background: orange;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        .action-button:hover {
+            background: darkorange;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI-Based Malware Detection</h1>
+        <p>About Dataset and Model Training</p>
+        <div class="dashboard">
+            <div class="card">
+                <div class="card-title">DATASET SIZE :</div>
+                <div class="card-value">138049</div>
+            </div>
+            <div class="card">
+                <div class="card-title">TRAINING SIZE :</div>
+                <div class="card-value">70%</div>
+            </div>
+            <div class="card">
+                <div class="card-title">TEST SIZE :</div>
+                <div class="card-value">30%</div>
+            </div>
+            <div class="card">
+                <div class="card-title">ACCURACY :</div>
+                <div class="card-value">99.41%</div>
+            </div>
+        </div>
+        <div class="graphs">
+            <div class="graph-box">
+                <h2>Algorithm Vs Accuracy</h2>
+                <div>Decision Tree - 99.06%</div>
+                <div class="bar-chart blue" style="width: 99%;"></div>
+                <div>Random Forest Classifier - 99.41%</div>
+                <div class="bar-chart yellow" style="width: 99.45%;"></div>
+                <h3>We chose Random Forest Classifier because it has more accuracy than Decision Tree</h3>
+            </div>
+            <div class="graph-box">
+                <h2>Legitimate Vs Malicious</h2>
+                <img src="{{ url_for('static', filename='piechart.png') }}" alt="Pie Chart" width="250">
+            </div>
+        </div>
+    </div>
+    <div class="button-container">
+        <a href="{{ url_for('index') }}" class="action-button">Test Your File</a>
+        <a href="{{ url_for('static', filename='AI-Based-Malware-Detection.zip') }}" download class="action-button">Download Desktop Version</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Past Reports</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: white;
+            background: linear-gradient(135deg, #1e90ff, #8a2be2);
+
+        }
+        
+       
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px; /* Increased padding for a larger container */
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2);
+            text-align: center;
+            width: 90%; /* Increased width for the container */
+            max-width: 1000px; /* Set a larger max-width */
+            margin: auto;
+        }
+
+        h1 {
+            font-weight: 600;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .table-container {
+            max-height: 400px; /* Set a maximum height for the table */
+            overflow-y: auto; /* Enable vertical scrolling */
+            margin-top: 20px; /* Add some space above the table */
+            margin-bottom: 30px; /* Add space below the table */
+        }
+
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.2); /* Glass effect */
+            border-radius: 10px;
+            overflow: hidden; /* To ensure rounded corners */
+
+           
+        }
+
+        th, td {
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 5px; /* Increased padding for larger table */
+            text-align: left;
+            word-wrap: break-word;
+           max-width: 350px;
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.3);
+            
+        }
+
+        .home-button {
+            margin-top: 20px; /* Adjusted margin for better spacing */
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: 600;
+            background: orange;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .home-button:hover {
+            background: darkorange;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Past Reports</h1>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>File Name</th>
+                    <th>Result</th>
+                    <th>Date</th>
+                </tr>
+                {% for report in results %}
+                <tr>
+                    <td>{{ report.filename }}</td>
+                    <td>{{ report.result }}</td>
+                    <td>{{ report.date }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <a href="{{ url_for('index') }}" class="home-button">Back to Upload</a>
+    </div>
+</body>
+</html>
