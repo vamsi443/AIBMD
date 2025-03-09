@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, send_from_directory
 import numpy as np
 import joblib
 import pefile
@@ -8,8 +8,11 @@ import json
 import datetime
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
+
 MODEL_PATH = os.path.join(os.path.dirname(__file__), 'classifier.pkl')
 FEATURES_PATH = os.path.join(os.path.dirname(__file__), 'features.pkl')
+RESULTS_FILE = os.path.join(os.path.dirname(__file__), 'past_results.json')
+ZIP_FILE = 'AI-Based-Malware-Detection.zip'
 
 try:
     clf = joblib.load(MODEL_PATH)
@@ -104,20 +107,26 @@ def save_result(filename, result):
         'result': result,
         'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     })
-    with open('past_results.json', 'w') as f:
+    with open(RESULTS_FILE, 'w') as f:
         json.dump(past_results, f)
 
 def load_past_results():
+    if not os.path.exists(RESULTS_FILE):
+        return []
     try:
-        with open('past_results.json', 'r') as f:
+        with open(RESULTS_FILE, 'r') as f:
             return json.load(f)
-    except FileNotFoundError:
-        return []  # Return an empty list if the file does not exist
+    except json.JSONDecodeError:
+        return []
 
 @app.route('/past_reports')
 def past_reports():
     past_results = load_past_results()
     return render_template('past_reports.html', results=past_results)
+
+@app.route('/download')
+def download():
+    return send_from_directory(directory=os.path.dirname(__file__), path=ZIP_FILE, as_attachment=True)
 
 if __name__ == '__main__':
     app.run(debug=True)
