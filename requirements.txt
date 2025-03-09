@@ -4,3 +4,4 @@ joblib
 pefile
 pickle-mixin
 gunicorn
+scikit-learn
