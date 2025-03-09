@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI-Based Malware Detection</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
     <style>
         * {
@@ -36,7 +38,7 @@
         
         h1 {
             color: white;
-            font-size: 58px;
+            font-size: 48px;
             font-weight: 600;
             text-align: center;
             margin-bottom: 20px;
@@ -44,13 +46,13 @@
         p {
             text-align: left;
             padding: 15px;
-            font-size: 30px;
+            font-size: 24px;
             color: white;
         }
         
         .dashboard {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
             margin-bottom: 30px;
             justify-content: center;
@@ -88,31 +90,30 @@
         .graph-box:hover {
             background: rgba(255, 255, 255, 0.3);
         }
-
+ 
         .bar-chart {
             width: 90%;
             height: 20px;
             margin: 10px auto;
             border-radius: 10px;
         }
-
+ 
         .blue { 
             background: blue;
         }
-
+ 
         .yellow { 
             background: yellow;
         }
-
+ 
         .button-container {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
             display: flex;
             gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
         }
-
+ 
         .action-button {
             padding: 12px 25px;
             font-size: 18px;
@@ -166,10 +167,10 @@
                 <img src="{{ url_for('static', filename='piechart.png') }}" alt="Pie Chart" width="250">
             </div>
         </div>
-    </div>
-    <div class="button-container">
-        <a href="{{ url_for('index') }}" class="action-button">Test Your File</a>
-      <a href="{{ url_for('download') }}" class="action-button">Download Desktop Version</a>
+        <div class="button-container">
+            <a href="{{ url_for('index') }}" class="action-button">Test Your File</a>
+            <a href="{{ url_for('download') }}" class="action-button">Download Desktop Version</a>
+        </div>
     </div>
 </body>
 </html>
