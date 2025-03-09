@@ -80,9 +80,9 @@ Werkzeug==3.1.3
 zope.event==5.0
 zope.interface==7.2
 pickle5
-pip install gunicorn
-pip freeze > requirements.txt
-git add requirements.txt
-git commit -m "Updated dependencies"
-git push origin main
-
+flask
+gunicorn
+numpy
+joblib
+pefile
+pickle5
